@@ -2,7 +2,9 @@ const Ship=(length)=>{
     let hits=0;
 
     const hit=()=>{
-        hits++;
+        if(hits<length){
+            hits+=1;
+        }
     };
 
     const isSunk=()=>hits>=length;

@@ -1,3 +1,4 @@
+import { experiments } from 'webpack';
 import Ship from '../src/ship.js';
 
 describe('Ship factory',()=>{
@@ -24,5 +25,25 @@ describe('Ship factory',()=>{
         const ship=Ship(3);
         ship.hit();
         expect(ship.isSunk()).toBe(false);
+    });
+
+    test('isSunk() return true if all positions are hit',()=>{
+        const ship=Ship(3);
+        ship.hit();
+        ship.hit();
+        expect(ship.isSunk()).toBe(false);
+
+        ship.hit();
+        expect(ship.isSunk()).toBe(true);
+    })
+
+    test('A ship should not be hit more then its length',()=>{
+        const ship=Ship(2);
+        ship.hit();
+        ship.hit();
+        ship.hit();
+
+        expect(ship.isSunk()).toBe(true);
+        expect(ship.hits()).toBe(2);
     });
 });
