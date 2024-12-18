@@ -67,12 +67,15 @@ const GameBoard = () => {
         return ships.every((ship)=>ship.isSunk());
     }
 
+    
+
     return{
         ships,
         missedAttacks,
         allShipSunk,
         placeShip,
         receiveAttack,
+        attackedCoordinates,
     };
 };
 
