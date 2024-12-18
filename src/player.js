@@ -29,6 +29,7 @@ const Player = (isComputer = false) => {
   };
   return {
     attack,
+    isComputer,
   };
 };
 export default Player;
