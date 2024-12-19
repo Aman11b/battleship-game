@@ -98,4 +98,29 @@ describe('GameBoard Factory',()=>{
         expect(gameBoard.allShipSunk()).toBe(true);
     });
 
+    test('place a ship on the board within bounds',()=>{
+        const gameBoard=GameBoard();
+        const ship=Ship(3);
+        gameBoard.placeShip(ship,[0,0],'horizontal');
+        expect(gameBoard.ships.length).toBe(1);
+        expect(gameBoard.ships[0].coordinates.length).toBe(3);
+    });
+
+    test('throws error when placing ship out of bound',()=>{
+        const gameBoard = GameBoard();
+        const ship = Ship(3);
+        expect(() => gameBoard.placeShip(ship, [8, 8], "horizontal")).toThrow(
+          "Ship placement is out of bound"
+        );
+    });
+
+    test('throws error when ships overlap',()=>{
+        const gameBoard = GameBoard();
+        const ship1 = Ship(3);
+        const ship2=Ship(3);
+
+        gameBoard.placeShip(ship1,[0,0],'horizontal');
+        expect(()=>gameBoard.placeShip(ship2,[0,0],'horizontal')).toThrow('Ships cannot overlap');
+    });
+
 });
