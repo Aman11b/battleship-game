@@ -1,26 +1,35 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js", // Entry point for the app
+  mode: "development", // Ensure the mode is set here
+  entry: "./src/index.js", // Entry point for our app
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js", // Output bundled file
+    filename: "bundle.js", // Output file name
+    path: path.resolve(__dirname, "dist"), // Output directory
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"], // Transpile JavaScript to ES5
+          },
+        },
+      },
+      {
+        test: /\.css$/, // Add a rule for handling CSS
+        use: ["style-loader", "css-loader"], // Process CSS files
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./index.html", // HTML template
-    }),
-  ],
-  mode: "development", // Set mode to development for debugging
-  devtool: "source-map", // For better error debugging
+  devServer: {
+    static: path.join(__dirname, "dist"), // Serve files from 'dist'
+    compress: true,
+    port: 9000, // Port number for Webpack Dev Server
+    open: true, // Open browser automatically
+    hot: true, // Enable Hot Module Replacement
+  },
 };

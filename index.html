@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Battleship Game</h1>
-    <div id="player-board"></div>
-    <div id="computer-board"></div>
+    <div class="game-container">
+        <h1>Battleship Game</h1>
+        <div class="boards">
+            <div id="player-board" class="board">
+                <h3>Your Board</h3>
+            </div>
+            <div id="computer-board" class="board">
+                <h3>Computer's Board</h3>
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="start-game">Start Game</button>
+    </div>
+    
     <script src="bundle.js"></script>
     
 </body>
