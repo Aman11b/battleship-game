@@ -22,4 +22,21 @@ describe('Game Loop Tests',()=>{
         expect(()=>game.playTurn()).not.toThrow();
     }); 
 
+    test('game end when all ships are sunk',()=>{
+        const board1=GameBoard();
+        const board2=GameBoard();
+        const player1=Player(false);
+        const player2=Player(true);
+
+        board1.placeShip(Ship(1),[0,0],'horizontal');
+        board2.placeShip(Ship(1),[1,1],'horizontal');
+
+        const game=GameLoop(player1,player2,board1,board2);
+
+        game.playTurn([1,1]);
+        expect(game.getWinner()).toBe(player1);
+
+        expect(()=>game.playTurn()).toThrow('Game Over');
+    });
+
 });
