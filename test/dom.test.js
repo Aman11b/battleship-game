@@ -1,4 +1,5 @@
 import { renderBoard } from "../src/dom";
+
 describe('dom testing',()=>{
     test('render a 10X10 grid',()=>{
         const container=document.createElement('div');
@@ -12,4 +13,14 @@ describe('dom testing',()=>{
             expect(cells.length).toBe(10);
         });
     });
-})
+
+    test('render all cells in container',()=>{
+        const container=document.createElement('div');
+
+        renderBoard(container);
+
+        const cells=container.querySelectorAll('.cell');
+
+        expect(cells.length).toBe(100);
+    });
+});
