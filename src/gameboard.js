@@ -17,9 +17,9 @@ const GameBoard = () => {
 
         for(let i = 0; i<ship.length; i++){
             if(orientation === 'horizontal') {
-                coordinates.push([x,y+i]);
+                coordinates.push([x+i,y]);
             }else if (orientation === 'vertical') {
-                coordinates.push ([x+i,y]);
+                coordinates.push ([x,y+i]);
             }
         }
 

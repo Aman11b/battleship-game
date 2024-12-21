@@ -1,33 +1,52 @@
-body {
-  font-family: Arial, sans-serif;
+*{
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  box-sizing: border-box;
 }
-
 #game {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 1rem;
 }
 
-.board {
+/* Add borders for the player and computer boards */
+.player-board,
+.computer-board {
+  border: 3px solid black; /* Make the borders slightly thicker for clarity */
+  height:300px;
   width: 300px;
-  height: 300px;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  border: 2px solid black;
 }
 
-/* Add this to your CSS */
+/* Ensure the board container size is fixed and grid fits properly */
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  aspect-ratio: 1;
+  height: fit-content;
+  width: fit-content;
+}
+
 .cell {
-  width: 30px;
-  height: 30px;
+  width: 100%; /* Fit cells within their grid space */
+  aspect-ratio: 1; /* Ensure cells are square */
   border: 1px solid #ccc;
-  display: inline-block;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.cell:hover {
+  background-color: #e0e0e0; /* Visual feedback for hover */
 }
 
 .ship {
-  background-color: #333; /* Color for the ship cells */
+  background-color: #333; /* Highlight for ships */
+  transition: background-color 0.3s ease;
+}
+
+.ship:hover {
+  background-color: #555; /* Highlight ships when hovered */
 }

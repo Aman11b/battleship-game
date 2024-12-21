@@ -1,30 +1,20 @@
 import "./style.css";
+import { renderBoard } from './dom';
+import Player from './player';
+import GameBoard from "./gameboard";
+import Ship from "./ship";
 
+const playerBoardContainer=document.getElementById('player-board');
+const computerBoardContainer=document.getElementById('computer-board');
 
-import { renderBoard } from "./dom"; // Import your renderBoard function
+const playerBoard=GameBoard();
+const computerBoard=GameBoard();
 
-// Sample game board object (simplified for the test)
-const gameBoard = {
-  ships: [
-    {
-      coordinates: [
-        [0, 0],
-        [0, 1],
-        [0, 2],
-      ],
-    }, // Ship placed at (0,0), (0,1), (0,2)
-    {
-      coordinates: [
-        [1, 5],
-        [1, 6],
-        [1, 7],
-      ],
-    }, // Ship placed at (1,5), (1,6), (1,7)
-  ],
-};
+const player=Player(false);
+const computer=Player(true);
 
-// Get the container element from the DOM
-const container = document.getElementById("board");
+playerBoard.placeShip(Ship(3),[0,0],'horizontal');
+computerBoard.placeShip(Ship(3),[1,5],'vertical');
 
-// Call the renderBoard function to display the board
-renderBoard(container, gameBoard);
+renderBoard(playerBoardContainer,playerBoard);
+renderBoard(computerBoardContainer,computerBoard);

@@ -6,8 +6,11 @@
   <title>BattleShip Game</title>
 </head>
 <body>
-  <div id="board"></div> <!-- This is where the game board will be rendered -->
-
-  <script src="bundle.js"></script> <!-- Webpack will bundle your JS here -->
+  <h1>Battleship Game</h1>
+  <div id="game">
+    <div id="player-board" class="player-board board"></div>
+    <div id="computer-board" class="computer-board board"></div>
+  </div>
+  <script src="bundle.js"></script>
 </body>
 </html>
