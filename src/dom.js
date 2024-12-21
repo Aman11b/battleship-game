@@ -1,4 +1,5 @@
-export const renderBoard = (container, gameBoard) => {
+// Function to render the game board
+export const renderBoard = (container, gameBoard, handleAttack) => {
   // Clear any previous content in the container
   container.innerHTML = "";
 
@@ -11,6 +12,11 @@ export const renderBoard = (container, gameBoard) => {
       const cell = document.createElement("div");
       cell.classList.add("cell"); // Add class for styling each cell
       row.appendChild(cell);
+
+      // Add event listener for clicks to handle attacks
+      cell.addEventListener("click", () => {
+        handleAttack(i, j); // Handle attack on the cell
+      });
     }
 
     container.appendChild(row); // Append the row to the container
@@ -32,6 +38,25 @@ export const placeShips = (container, gameBoard) => {
 
       // Add a class to visually mark the cell as a ship
       cell.classList.add("ship");
+
+      // If the ship is already sunk, mark the cell as 'sunk'
+      if (ship.isSunk()) {
+        cell.classList.add("sunk"); // Add a sunk class to show it is hit and sunk
+      }
     });
   });
+};
+
+// Function to show a hit or miss in the cell
+export const updateAttackResult = (container, row, col, result) => {
+  const cell = container.children[row].children[col];
+
+  if (result === "hit") {
+    cell.style.backgroundColor = "red"; // Show hit with red
+  } else if (result === "miss") {
+    cell.style.backgroundColor = "blue"; // Show miss with blue
+  } else if (result === "sunk") {
+    cell.style.backgroundColor = "darkred"; // Mark a sunk ship with dark red
+    cell.classList.add("sunk"); // Optionally, add a "sunk" class for additional styling
+  }
 };

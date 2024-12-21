@@ -1,6 +1,3 @@
-import GameBoard from "../src/gameboard";
-import Ship from "../src/ship"; // Import the Ship module
-
 const Player = (isComputer = false) => {
   const attackCoordinates = new Set();
 
@@ -20,16 +17,24 @@ const Player = (isComputer = false) => {
       } while (attackCoordinates.has(target.toString()));
     } else {
       if (!coordinate)
-        throw new Error("Coordinate require for human player attack");
+        throw new Error("Coordinate required for human player attack");
       target = coordinate;
     }
 
     attackCoordinates.add(target.toString());
     gameboard.receiveAttack(target);
   };
+
+  const reset = () => {
+    attackCoordinates.clear();
+  };
+
   return {
     attack,
     isComputer,
+    generateRandomCoordinate,
+    reset,
   };
 };
+
 export default Player;

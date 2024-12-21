@@ -50,3 +50,18 @@
 .ship:hover {
   background-color: #555; /* Highlight ships when hovered */
 }
+
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+button {
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
